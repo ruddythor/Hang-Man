@@ -16,7 +16,7 @@ print '''
 
 
 
-           WELCOME TO JOSHs HANGING OF THE MEN!!
+WELCOME TO JOSHs HANGING OF THE MEN!!
 
 
 
@@ -33,25 +33,25 @@ hangman=1
 goodchoices=""
 win=1
 head= """\n\n\nHangman:\n
-   0   \n\n\n\n"""
-body= """\n\n\nHangman:\n\n  0
-  |
-  |\n\n\n\n"""
-arm1="""\n\n\nHangman:\n\n  0
- /|
-  |\n\n\n\n"""
-arm2="""\n\n\nHangman:\n\n  0
- /|\\
-  |\n\n\n\n"""
-leg1="""\n\n\nHangman:\n\n  0
- /|\\
-  |
- /\n\n\n\n
+0 \n\n\n\n"""
+body= """\n\n\nHangman:\n\n 0
+ |
+ |\n\n\n\n"""
+arm1="""\n\n\nHangman:\n\n 0
+/|
+ |\n\n\n\n"""
+arm2="""\n\n\nHangman:\n\n 0
+/|\\
+ |\n\n\n\n"""
+leg1="""\n\n\nHangman:\n\n 0
+/|\\
+ |
+/\n\n\n\n
 """
-ALLDONE="""\n\n\nHangman:\n\n  0
- /|\\
-  |
- / \\ 
+ALLDONE="""\n\n\nHangman:\n\n 0
+/|\\
+ |
+/ \\
 \n\n\n\n****GAME OVER!!!!****\n******YOU LOSE!!******\n\n\n\n
 """
 
@@ -60,41 +60,46 @@ ALLDONE="""\n\n\nHangman:\n\n  0
 def letterentry():
  global pickletter
  pickletter=raw_input("\n\nEnter a letter or hit CTRL+Z to exit: ")
- def checks(pickletter):
-  print "\n"
-  for x in word:
-   if pickletter in x and choices:
-    global goodchoices
-    goodchoices=goodchoices+pickletter
-    print pickletter,
-   elif x in choices:
-    print x,
-   else:
-    print "_",
  global choices
- choices = choices + pickletter
- if pickletter not in word:
+ while pickletter in choices:
+  print "Try another letter please."
+  pickletter=raw_input("\n\nEnter a letter or hit CTRL+Z to exit: ")
+ if pickletter not in choices:
+  choices = choices + pickletter
   checks(pickletter)
-  badmove()
- else: 
-  checks(pickletter)
-  goodmove()
+  if pickletter not in word:
+   badmove()
+  else:
+   goodmove()
  print "\n\nTHESE LETTERS ARE NOT IN THE WORD:", badchoices, "\n"
  print "THESE ARE GOOD LETTERS:", goodchoices, "\n\n\n", "==="*15
 
+def checks(item):
+ print "\n"
+ for x in word:
+  if pickletter in x and choices:
+   global goodchoices
+   goodchoices=goodchoices+pickletter
+   print pickletter,
+  elif x in choices:
+   print x,
+  else:
+   print "_",
 
 def goodmove():
  global win
  global pickletter
  global choices
- if pickletter in choices:
-  win=win
- elif pickletter in word:
+ if pickletter in word:
   win=win+1
  if win==len(word)+1:
   print "\n\n\n**** YOU WIN!! ****\n\n\n"
+  return
+
 def badmove():
   global badchoices
+  global choices
+  choices=choices+pickletter
   badchoices=badchoices + pickletter
   global hangman
   if hangman==1:
@@ -113,46 +118,3 @@ def badmove():
 
 while hangman<=6 and win<=len(word):
  letterentry()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
