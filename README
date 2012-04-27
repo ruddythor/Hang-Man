@@ -1,1 +1,4 @@
-So, I'm a bit noob-ish with git, and programming. The program is a little glitchy right now (It doesn't recognize letters you've already entered), and it doesn't act properly for a game win. But it was a fun project to take on.
+This program is a simple game that picks from 10 words (some of them nonsensical, so you may not win) and uses them as the basis for a game of hangman. You have 6 guesses to win, or you get hanged.
+
+
+Dont get hanged!

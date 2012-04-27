@@ -26,7 +26,7 @@ WELCOME TO JOSHs HANGING OF THE MEN!!
 '''
 for x in word:
  print "_",
-
+print "\n"
 choices=""
 badchoices=""
 hangman=1
@@ -59,11 +59,11 @@ ALLDONE="""\n\n\nHangman:\n\n 0
 
 def letterentry():
  global pickletter
- pickletter=raw_input("\n\nEnter a letter or hit CTRL+Z to exit: ")
+ pickletter=raw_input("\nEnter a letter or hit CTRL+Z to exit: ")
  global choices
- while pickletter in choices:
+ while pickletter in choices or len(pickletter)!=1 or pickletter==" ":
   print "Try another letter please."
-  pickletter=raw_input("\n\nEnter a letter or hit CTRL+Z to exit: ")
+  pickletter=raw_input("\nEnter a letter or hit CTRL+Z to exit: ")
  if pickletter not in choices:
   choices = choices + pickletter
   checks(pickletter)
@@ -71,8 +71,8 @@ def letterentry():
    badmove()
   else:
    goodmove()
- print "\n\nTHESE LETTERS ARE NOT IN THE WORD:", badchoices, "\n"
- print "THESE ARE GOOD LETTERS:", goodchoices, "\n\n\n", "==="*15
+ print "\nTHESE LETTERS ARE NOT IN THE WORD:", badchoices, "\n"
+ print "THESE ARE GOOD LETTERS:", goodchoices, "\n\n", "==="*15
 
 def checks(item):
  print "\n"
@@ -85,11 +85,19 @@ def checks(item):
    print x,
   else:
    print "_",
+ print "\n"
 
 def goodmove():
  global win
  global pickletter
  global choices
+ count=0
+# if pickletter in word:
+#  win=win+1
+# for x in word:
+#  if x==pickletter:
+#   count=count+1
+#   win=win+1
  if pickletter in word:
   win=win+1
  if win==len(word)+1:
